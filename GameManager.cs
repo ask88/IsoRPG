@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PrototypeGame2.ENUMS;
 using PrototypeGame2.GameObjects;
+using PrototypeGame2.GFX;
 using System.Collections.Generic;
 
 namespace PrototypeGame2
@@ -19,26 +20,32 @@ namespace PrototypeGame2
         public int screenWidth, screenHeight;
 
 
+        private SpriteSheet testSpriteSheet;
+
         public GameManager(Game1 game)
         {
             this.game = game;
             screenWidth = game.WIDTH / TILE_SIZE;
             screenHeight = game.HEIGHT / TILE_SIZE;
 
-            addGameObject(new Player(this, eTag.PLAYER, "Player", 10, 10));
-            addLevelObject(new LevelObject(eLevelTag.LEVEL, "Level", 10, 41, 78, 65, 80, 80, getObjectByID(eTag.PLAYER)));
+            testSpriteSheet = new SpriteSheet(game);
+
+           // addGameObject(new Player(this, eTag.PLAYER, "Player", 10, 10));
+           // addLevelObject(new LevelObject(eLevelTag.LEVEL, "Level", 10, 41, 78, 65, 80, 80, getObjectByID(eTag.PLAYER)));
         }
 
         public void Load(Game1 g)
         {
+            testSpriteSheet.Load("testSpriteSheet");
+
             for(int i = 0; i < levelObjects.Count; i++)
             {
-                levelObjects[i].Load(g);
+                //levelObjects[i].Load(g);
             }
 
             for(int i = 0; i < objects.Count; i++)
             {
-                objects[i].Load(g);
+                //objects[i].Load(g);
             }
         }
 
