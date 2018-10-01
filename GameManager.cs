@@ -19,6 +19,8 @@ namespace PrototypeGame2
         public int TILE_SIZE = 8;
         public int screenWidth, screenHeight;
 
+        private KeyboardState state;
+        private KeyboardState oldState;
 
         private SpriteSheet testSpriteSheet;
 
@@ -28,10 +30,8 @@ namespace PrototypeGame2
             screenWidth = game.WIDTH / TILE_SIZE;
             screenHeight = game.HEIGHT / TILE_SIZE;
 
-            testSpriteSheet = new SpriteSheet(game);
+            testSpriteSheet = new SpriteSheet(game, 4f);
 
-           // addGameObject(new Player(this, eTag.PLAYER, "Player", 10, 10));
-           // addLevelObject(new LevelObject(eLevelTag.LEVEL, "Level", 10, 41, 78, 65, 80, 80, getObjectByID(eTag.PLAYER)));
         }
 
         public void Load(Game1 g)
@@ -51,6 +51,20 @@ namespace PrototypeGame2
 
         public void Update(float dt)
         {
+            state = Keyboard.GetState();
+
+            if (state.IsKeyDown(Keys.Space) && oldState.IsKeyUp(Keys.Space))
+            {
+                testSpriteSheet.setCurrentFrame(2);
+            }
+            if(state.IsKeyUp(Keys.Space) && oldState.IsKeyUp(Keys.Down))
+            {
+                testSpriteSheet.setCurrentFrame(1);
+            }
+
+            testSpriteSheet.Update(dt);
+
+            oldState = Keyboard.GetState();
 
             for (int i = 0; i < levelObjects.Count; i++)
             {
@@ -70,6 +84,8 @@ namespace PrototypeGame2
         {
             //sp.Draw(drawVerticalLine(), new Vector2(game.WIDTH / 2, 0), null);
             //sp.Draw(drawHorizontalLine(), new Vector2(0, game.HEIGHT / 2), null);
+
+            testSpriteSheet.Draw(sp, dt);
 
             for (int i = 0; i < levelObjects.Count; i++)
             {

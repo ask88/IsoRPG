@@ -13,9 +13,16 @@ namespace PrototypeGame2.GFX
         private int spriteWidth;
         private int spriteHeight;
 
-        public SpriteSheet(Game1 game1)
+        private int frame = 1; //default to frame 1
+
+        private float x = 0, y = 0; //default x and y to zero
+
+        private float scale;
+
+        public SpriteSheet(Game1 game1, float scale)
         {
             this.game1 = game1;
+            this.scale = scale;
         }
         
         public void Load(string path)
@@ -23,13 +30,28 @@ namespace PrototypeGame2.GFX
             spriteSheet = game1.Content.Load<Texture2D>(path);
             spriteSheetWidth = spriteSheet.Width;
             spriteSheetHeight = spriteSheet.Height;
-            //System.Console.WriteLine(spriteSheetWidth * spriteSheetHeight);
-            System.Console.WriteLine(getFrames());
+
+        }
+
+        public void Update(float UC)
+        {
+
+        }
+
+        public void Draw(SpriteBatch sp, float UC)
+        {
+            sp.Draw(spriteSheet, Destination(x, y), SpriteView(frame, 1), Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+        }
+
+        public Vector2 Destination(float x, float y)
+        {
+           
+            return new Vector2(x, y);
         }
 
         public Rectangle SpriteView(int frame, int layer)
         {
-            int totalNumberOfFrames = 3;
+            int totalNumberOfFrames = getFrames();
             int totalNumberOfLayers = 1;
 
             int spriteFrameWidth = spriteWidth = spriteSheetWidth / totalNumberOfFrames;
@@ -43,11 +65,7 @@ namespace PrototypeGame2.GFX
 
         public int getFrames()
         {
-            //get color data from texture
-            //loop through color data looking for color
-            //increment when color is found
             int count = 0;
-            string topLayer = "";
             Color[] colorData = new Color[spriteSheetWidth * spriteSheetHeight];
 
             spriteSheet.GetData<Color>(colorData);
@@ -56,23 +74,12 @@ namespace PrototypeGame2.GFX
             {
                 if (colorData[w].Equals(black()))
                 {
-                    topLayer = topLayer + "B ";
                     if (!colorData[w + 1].Equals(black()) && (w + 1) < spriteSheetWidth)
                     {
                         count++;
                     }
                 }
-                else if (colorData[w].Equals(white()))
-                {
-                    topLayer = topLayer + "W ";
-                }
-                else
-                {
-                    topLayer = topLayer + "X ";
-                }
             }
-
-            System.Console.WriteLine(topLayer);
             return count;
         }
 
@@ -100,5 +107,13 @@ namespace PrototypeGame2.GFX
         public int getSpriteSheetHeight() { return spriteSheetHeight; }
         public int getSpriteWidth() { return spriteWidth; }
         public int getSpriteHeight() { return spriteHeight; }
+        public int getCurrentFrame() { return frame; }
+        public float getScale() { return scale; }
+        public float getX() { return x; }
+        public float getY() { return y; }
+        public void setX(float x) { this.x = x; }
+        public void setY(float y) { this.y = y; }
+        public void setScale(float scale) { this.scale = scale; }
+        public void setCurrentFrame(int frame) { this.frame = frame; }
     }
 }
