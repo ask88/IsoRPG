@@ -43,6 +43,7 @@ namespace PrototypeGame2
             }
             return null;
         }
+
         private int[] dataArray(XmlDocument xmlDoc, XmlNodeList xmlNode)
         {
             int count = 0;
@@ -81,6 +82,7 @@ namespace PrototypeGame2
 
             return tileArray;
         }
+
         private bool isDigit(char x)
         {
             
@@ -101,6 +103,16 @@ namespace PrototypeGame2
             }
 
             return digit;
+        }
+
+        public void update(float UC)
+        {
+
+        }
+
+        public void draw(SpriteBatch sp, float UC)
+        {
+
         }
 
         public int getWidth() { return width; }

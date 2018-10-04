@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using PrototypeGame2.ENUMS;
-using PrototypeGame2.GameObjects;
 using PrototypeGame2.GFX;
+using PrototypeGame2.INPUT;
 using System.Collections.Generic;
 
 namespace PrototypeGame2
@@ -19,8 +18,7 @@ namespace PrototypeGame2
         public int TILE_SIZE = 8;
         public int screenWidth, screenHeight;
 
-        private KeyboardState state;
-        private KeyboardState oldState;
+        private KeyboardInput ki;
 
         private SpriteSheet testSpriteSheet;
 
@@ -31,7 +29,7 @@ namespace PrototypeGame2
             screenHeight = game.HEIGHT / TILE_SIZE;
 
             testSpriteSheet = new SpriteSheet(game, 4f);
-
+            ki = new KeyboardInput();
         }
 
         public void Load(Game1 g)
@@ -51,20 +49,18 @@ namespace PrototypeGame2
 
         public void Update(float dt)
         {
-            state = Keyboard.GetState();
+            ki.setAction(Microsoft.Xna.Framework.Input.Keys.A);
+            WriteToXML.write();
+            ki.readButtonMap();
 
-            if (state.IsKeyDown(Keys.Space) && oldState.IsKeyUp(Keys.Space))
-            {
-                testSpriteSheet.setCurrentFrame(2);
-            }
-            if(state.IsKeyUp(Keys.Space) && oldState.IsKeyUp(Keys.Down))
+            if (ki.actionBtn())
             {
                 testSpriteSheet.setCurrentFrame(1);
             }
-
-            testSpriteSheet.Update(dt);
-
-            oldState = Keyboard.GetState();
+            else
+            {
+                testSpriteSheet.setCurrentFrame(2);
+            }
 
             for (int i = 0; i < levelObjects.Count; i++)
             {
