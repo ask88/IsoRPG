@@ -24,7 +24,16 @@ namespace PrototypeGame2.INPUT
 
         public KeyboardInput()
         {
-
+            action = Keys.Space;
+            cancel = Keys.Back;
+            up = Keys.W;
+            down = Keys.S;
+            left = Keys.A;
+            right = Keys.D;
+            cameraZoomIn = Keys.Up;
+            cameraZoomOut = Keys.Down;
+            cameraRotateClockWise = Keys.Right;
+            cameraRotateCounterClockWise = Keys.Left;
         }
 
         public void readButtonMap()

@@ -48,6 +48,7 @@
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GFX\SpriteSheet.cs" />
+    <Compile Include="INPUT\GamepadInput.cs" />
     <Compile Include="INPUT\KeyboardInput.cs" />
     <Compile Include="INPUT\WriteToXML.cs" />
     <Compile Include="LevelObject.cs" />

@@ -19,6 +19,7 @@ namespace PrototypeGame2
         public int screenWidth, screenHeight;
 
         private KeyboardInput ki;
+        private GamepadInput gpi;
 
         private SpriteSheet testSpriteSheet;
 
@@ -30,6 +31,7 @@ namespace PrototypeGame2
 
             testSpriteSheet = new SpriteSheet(game, 4f);
             ki = new KeyboardInput();
+            gpi = new GamepadInput();
         }
 
         public void Load(Game1 g)
@@ -49,9 +51,9 @@ namespace PrototypeGame2
 
         public void Update(float dt)
         {
-            ki.setAction(Microsoft.Xna.Framework.Input.Keys.A);
             WriteToXML.write();
             ki.readButtonMap();
+            gpi.readButtonMap();
 
             if (ki.actionBtn())
             {

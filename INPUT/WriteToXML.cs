@@ -16,40 +16,79 @@ namespace PrototypeGame2.INPUT
             xml.WriteEndElement();
 
             xml.WriteStartElement("Key");
-            xml.WriteAttributeString("cancel", "B");
+            xml.WriteAttributeString("cancel", Convert.ToString(KeyboardInput.cancel));
             xml.WriteEndElement();
 
             xml.WriteStartElement("Key");
-            xml.WriteAttributeString("up", "W");
+            xml.WriteAttributeString("up", Convert.ToString(KeyboardInput.up));
             xml.WriteEndElement();
 
             xml.WriteStartElement("Key");
-            xml.WriteAttributeString("down", "S");
+            xml.WriteAttributeString("down", Convert.ToString(KeyboardInput.down));
             xml.WriteEndElement();
 
             xml.WriteStartElement("Key");
-            xml.WriteAttributeString("left", "A");
+            xml.WriteAttributeString("left", Convert.ToString(KeyboardInput.left));
             xml.WriteEndElement();
 
             xml.WriteStartElement("Key");
-            xml.WriteAttributeString("right", "D");
+            xml.WriteAttributeString("right", Convert.ToString(KeyboardInput.right));
             xml.WriteEndElement();
 
             xml.WriteStartElement("Key");
-            xml.WriteAttributeString("cameraZoomIn", "Up");
+            xml.WriteAttributeString("cameraZoomIn", Convert.ToString(KeyboardInput.cameraZoomIn));
             xml.WriteEndElement();
 
             xml.WriteStartElement("Key");
-            xml.WriteAttributeString("cameraZoomOut", "Down");
+            xml.WriteAttributeString("cameraZoomOut", Convert.ToString(KeyboardInput.cameraZoomOut));
             xml.WriteEndElement();
 
             xml.WriteStartElement("Key");
-            xml.WriteAttributeString("cameraRotateClockWise", "Left");
+            xml.WriteAttributeString("cameraRotateClockWise", Convert.ToString(KeyboardInput.cameraRotateClockWise));
             xml.WriteEndElement();
 
             xml.WriteStartElement("Key");
-            xml.WriteAttributeString("cameraRotateCounterClockWise", "Right");
+            xml.WriteAttributeString("cameraRotateCounterClockWise", Convert.ToString(KeyboardInput.cameraRotateCounterClockWise));
+            xml.WriteEndElement();
 
+            xml.WriteStartElement("Button");
+            xml.WriteAttributeString("action", Convert.ToString(GamepadInput.action));
+            xml.WriteEndElement();
+
+            xml.WriteStartElement("Button");
+            xml.WriteAttributeString("cancel", Convert.ToString(GamepadInput.cancel));
+            xml.WriteEndElement();
+
+            xml.WriteStartElement("Button");
+            xml.WriteAttributeString("up", Convert.ToString(GamepadInput.up));
+            xml.WriteEndElement();
+
+            xml.WriteStartElement("Button");
+            xml.WriteAttributeString("down", Convert.ToString(GamepadInput.down));
+            xml.WriteEndElement();
+
+            xml.WriteStartElement("Button");
+            xml.WriteAttributeString("left", Convert.ToString(GamepadInput.left));
+            xml.WriteEndElement();
+
+            xml.WriteStartElement("Button");
+            xml.WriteAttributeString("right", Convert.ToString(GamepadInput.right));
+            xml.WriteEndElement();
+
+            xml.WriteStartElement("Button");
+            xml.WriteAttributeString("cameraZoomIn", Convert.ToString(GamepadInput.cameraZoomIn));
+            xml.WriteEndElement();
+
+            xml.WriteStartElement("Button");
+            xml.WriteAttributeString("cameraZoomOut", Convert.ToString(GamepadInput.cameraZoomOut));
+            xml.WriteEndElement();
+
+            xml.WriteStartElement("Button");
+            xml.WriteAttributeString("cameraRotateClockWise", Convert.ToString(GamepadInput.cameraRotateClockWise));
+            xml.WriteEndElement();
+
+            xml.WriteStartElement("Button");
+            xml.WriteAttributeString("cameraRotateCounterClockWise", Convert.ToString(GamepadInput.cameraRotateCounterClockWise));
             xml.WriteEndElement();
             xml.Close();
         }
