@@ -55,12 +55,13 @@ namespace PrototypeGame2.INPUT
 
         public bool actionBtn()
         {
-            newState = Keyboard.GetState();
-            if(newState.IsKeyDown(action) && oldState.IsKeyUp(action))
+            KeyboardState state = Keyboard.GetState();
+
+            if (state.IsKeyDown(action) && oldState.IsKeyUp(action))
             {
                 return true;
             }
-            oldState = Keyboard.GetState();
+
             return false;
         }
 
@@ -88,11 +89,13 @@ namespace PrototypeGame2.INPUT
 
         public bool downBtn()
         {
-            newState = Keyboard.GetState();
+            KeyboardState newState = Keyboard.GetState();
+
             if (newState.IsKeyDown(down) && oldState.IsKeyUp(down))
             {
                 return true;
             }
+
             oldState = Keyboard.GetState();
             return false;
         }

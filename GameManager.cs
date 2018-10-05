@@ -3,25 +3,27 @@ using Microsoft.Xna.Framework.Graphics;
 using PrototypeGame2.ENUMS;
 using PrototypeGame2.GFX;
 using PrototypeGame2.INPUT;
+using PrototypeGame2.UI;
 using System.Collections.Generic;
 
 namespace PrototypeGame2
 {
+    public enum GameState { main_menu, new_game, load_menu };
+
     public class GameManager
     {
-        private eLevelTag lTag = eLevelTag.LEVEL;
-        private List<GameObject> objects = new List<GameObject>();
-        private List<LevelObject> levelObjects = new List<LevelObject>();
         private Game1 game;
 
         public float SCALE = 1;
         public int TILE_SIZE = 8;
         public int screenWidth, screenHeight;
 
-        private KeyboardInput ki;
-        private GamepadInput gpi;
+        private GameState state;
 
-        private SpriteSheet testSpriteSheet;
+        private KeyboardInput keyboardInput;
+        private GamepadInput gamepadInput;
+
+        private MainMenu mainMenu;
 
         public GameManager(Game1 game)
         {
@@ -29,134 +31,78 @@ namespace PrototypeGame2
             screenWidth = game.WIDTH / TILE_SIZE;
             screenHeight = game.HEIGHT / TILE_SIZE;
 
-            testSpriteSheet = new SpriteSheet(game, 4f);
-            ki = new KeyboardInput();
-            gpi = new GamepadInput();
+            state = GameState.main_menu;
+
+            keyboardInput = new KeyboardInput();
+            gamepadInput = new GamepadInput();
+
+            //Game States
+            mainMenu = new MainMenu(this, keyboardInput, gamepadInput);
         }
 
         public void Load(Game1 g)
         {
-            testSpriteSheet.Load("testSpriteSheet");
-
-            for(int i = 0; i < levelObjects.Count; i++)
-            {
-                //levelObjects[i].Load(g);
-            }
-
-            for(int i = 0; i < objects.Count; i++)
-            {
-                //objects[i].Load(g);
-            }
+            mainMenu.Load();
         }
 
         public void Update(float dt)
         {
-            WriteToXML.write();
-            ki.readButtonMap();
-            gpi.readButtonMap();
-
-            if (ki.actionBtn())
+            switch(state)
             {
-                testSpriteSheet.setCurrentFrame(1);
-            }
-            else
-            {
-                testSpriteSheet.setCurrentFrame(2);
-            }
-
-            for (int i = 0; i < levelObjects.Count; i++)
-            {
-                if(levelObjects[i].getTag().Equals(lTag))
-                {
-                    levelObjects[i].Update(dt);
-                }
-            }
-
-            for (int i = 0; i < objects.Count; i++)
-            {
-                objects[i].Update(dt);
+                case GameState.main_menu:
+                    mainMenu.Update(dt);
+                    break;
+                case GameState.load_menu:
+                    break;
+                default:
+                    break;
             }
         }
 
         public void Draw(SpriteBatch sp, float dt)
         {
-            //sp.Draw(drawVerticalLine(), new Vector2(game.WIDTH / 2, 0), null);
-            //sp.Draw(drawHorizontalLine(), new Vector2(0, game.HEIGHT / 2), null);
-
-            testSpriteSheet.Draw(sp, dt);
-
-            for (int i = 0; i < levelObjects.Count; i++)
+            switch(state)
             {
-                if (levelObjects[i].getTag().Equals(lTag))
-                {
-                    levelObjects[i].Draw(sp, dt);
-                }
-            }
-
-            for (int i = 0; i < objects.Count; i++)
-            {
-                objects[i].Draw(sp, dt);
+                case GameState.main_menu:
+                    //sp.Draw(drawHorizontalLine(40), new Vector2(0, game.HEIGHT / 2), null, Color.Black, 0f, Vector2.Zero, SCALE, SpriteEffects.None, 0f);
+                    //sp.Draw(drawVerticalLine(40), new Vector2(40, game.HEIGHT / 2), null, Color.Black, 0f, Vector2.Zero, SCALE, SpriteEffects.None, 0f);
+                    //sp.Draw(drawVerticalLine(40), new Vector2(0, game.HEIGHT / 2), null, Color.Black, 0f, Vector2.Zero, SCALE, SpriteEffects.None, 0f);
+                    //sp.Draw(drawHorizontalLine(40), new Vector2(0, (game.HEIGHT / 2) + 40), null, Color.Black, 0f, Vector2.Zero, SCALE, SpriteEffects.None, 0f);
+                    mainMenu.Draw(sp, dt);
+                    break;
+                case GameState.load_menu:
+                    
+                    break;
+                default:
+                    break;
             }
         }
 
-        public void addGameObject(GameObject go)
+        public Texture2D drawVerticalLine(int height)
         {
-            objects.Add(go);
-        }
-
-        public void addLevelObject(LevelObject lo)
-        {
-            levelObjects.Add(lo);
-        }
-
-        public GameObject getObjectByID(eTag tag)
-        {
-            for(int i = 0; i < objects.Count; i++)
-            {
-                if(objects[i].getTag().Equals(tag))
-                {
-                    return objects[i];
-                }
-            }
-
-            return null;
-        }
-
-        public LevelObject getLevelByID(eTag tag)
-        {
-            for (int i = 0; i < levelObjects.Count; i++)
-            {
-                if (levelObjects[i].getTag().Equals(tag))
-                {
-                    return levelObjects[i];
-                }
-            }
-
-            return null;
-        }
-
-        public Texture2D drawVerticalLine()
-        {
-            Color[] verticalLine = new Color[game.HEIGHT];
+            Color[] verticalLine = new Color[height];
             for(int i = 0; i < verticalLine.Length; i++)
             {
                 verticalLine[i] = Color.Black;
             }
-            Texture2D vTexture = new Texture2D(game.GraphicsDevice, 1, game.HEIGHT);
+            Texture2D vTexture = new Texture2D(game.GraphicsDevice, 1, height);
             vTexture.SetData<Color>(verticalLine);
             return vTexture;
         }
 
-        public Texture2D drawHorizontalLine()
+        public Texture2D drawHorizontalLine(int width)
         {
-            Color[] horizontalLine = new Color[game.WIDTH];
+            Color[] horizontalLine = new Color[width];
             for (int i = 0; i < horizontalLine.Length; i++)
             {
                 horizontalLine[i] = Color.Black;
             }
-            Texture2D vTexture = new Texture2D(game.GraphicsDevice, game.WIDTH, 1);
+            Texture2D vTexture = new Texture2D(game.GraphicsDevice, width, 1);
             vTexture.SetData<Color>(horizontalLine);
             return vTexture;
         }
+
+        public GameState getState() { return state; }
+        public void setState(GameState state) { this.state = state; }
     }
 }
