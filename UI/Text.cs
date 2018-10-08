@@ -26,7 +26,7 @@ namespace PrototypeGame2.UI
 
 		//an array that holds all the characters that the text engine will use.
 		private char[] alpha = { ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-			'v', 'w', 'x', 'y', 'z', '!', '.', ',', '?', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
+			'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '!', '.', ',', '?'};
 
 		//loading in the asset that the engine will pull from
 		public void Load(string fileName)
@@ -43,7 +43,6 @@ namespace PrototypeGame2.UI
 
 			//instantiate a new struct with the length of the message
 			fd = new fontDetails[message.Length];
-
 			//loop through and make an empty array that will hold struct data
 			for (int i = 0; i < message.Length; i++)
 			{
@@ -175,7 +174,7 @@ namespace PrototypeGame2.UI
 
         private Color blueColor()
         {
-            return new Color(68, 58, 241, 255)
+            return new Color(68, 58, 241, 255);
         }
 	}
 }

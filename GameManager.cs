@@ -19,7 +19,7 @@ namespace PrototypeGame2
         public int screenWidth, screenHeight;
 
         private GameState state;
-
+        private Text text;
         private KeyboardInput keyboardInput;
         private GamepadInput gamepadInput;
 
@@ -32,7 +32,6 @@ namespace PrototypeGame2
             screenHeight = game.HEIGHT / TILE_SIZE;
 
             state = GameState.main_menu;
-
             keyboardInput = new KeyboardInput();
             gamepadInput = new GamepadInput();
 
@@ -47,6 +46,7 @@ namespace PrototypeGame2
 
         public void Update(float dt)
         {
+
             switch(state)
             {
                 case GameState.main_menu:
@@ -103,6 +103,7 @@ namespace PrototypeGame2
         }
 
         public GameState getState() { return state; }
+        public Game1 getGame1() { return game; }
         public void setState(GameState state) { this.state = state; }
     }
 }

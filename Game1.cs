@@ -121,9 +121,9 @@ namespace PrototypeGame2
                 GraphicsDevice.Clear(Color.CornflowerBlue);
 
                 //TODO DRAW
-                spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, null, null, null);
+                //spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, null, null, null);
                 gm.Draw(spriteBatch, UPDATE_CAP);
-                spriteBatch.End();
+                //spriteBatch.End();
 
                 base.Draw(gt);
             }

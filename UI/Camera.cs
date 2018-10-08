@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace RenderTest
+namespace PrototypeGame2.UI
 {
     /*
      * 

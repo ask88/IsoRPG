@@ -13,6 +13,8 @@ namespace PrototypeGame2.UI
         private KeyboardInput keyboardInput;
         private GamepadInput gamepadInput;
 
+        private Text text;
+
         private bool trigger = false;
 
     public MainMenu(GameManager game, KeyboardInput keyboardInput, GamepadInput gamepadInput)
@@ -21,11 +23,15 @@ namespace PrototypeGame2.UI
             selectionBox = new Rectangle(x, y, 60, 40);
             this.keyboardInput = keyboardInput;
             this.gamepadInput = gamepadInput;
+            text = new Text(game.getGame1(), game.SCALE * 5);
         }
 
         public void Load()
         {
-
+            text.Load("font/alpha");
+            text.MessageInput("chi");
+            text.setPosition_X(0);
+            text.setPosition_Y(100);
         }
 
         public void Update(float UC)
@@ -43,10 +49,13 @@ namespace PrototypeGame2.UI
 
         public void Draw(SpriteBatch sp, float UC)
         {
+            text.Draw(sp);
+            /*
             sp.Draw(game.drawHorizontalLine(selectionBox.Width), new Vector2(selectionBox.X, selectionBox.Y), null, Color.Black, 0f, Vector2.Zero, game.SCALE, SpriteEffects.None, 0f);
             sp.Draw(game.drawHorizontalLine(selectionBox.Width), new Vector2(selectionBox.X, selectionBox.Y + selectionBox.Height), null, Color.Black, 0f, Vector2.Zero, game.SCALE, SpriteEffects.None, 0f);
             sp.Draw(game.drawVerticalLine(selectionBox.Height), new Vector2(selectionBox.X, selectionBox.Y), null, Color.Black, 0f, Vector2.Zero, game.SCALE, SpriteEffects.None, 0f);
             sp.Draw(game.drawVerticalLine(selectionBox.Height), new Vector2(selectionBox.X + selectionBox.Width, selectionBox.Y), null, Color.Black, 0f, Vector2.Zero, game.SCALE, SpriteEffects.None, 0f);
+            */
         }
     }
 }
