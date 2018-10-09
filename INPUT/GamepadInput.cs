@@ -7,8 +7,6 @@ namespace PrototypeGame2.INPUT
 {
     public class GamepadInput
     {
-        private GamePadState newState;
-        private GamePadState oldState;
 
         public static Buttons action;
         public static Buttons cancel;
@@ -22,6 +20,17 @@ namespace PrototypeGame2.INPUT
         public static Buttons cameraRotateCounterClockWise;
 
         public bool isZoomed = false;
+
+        private GamePadState actionOldState;
+        private GamePadState cancelOldState;
+        private GamePadState upOldState;
+        private GamePadState downOldState;
+        private GamePadState leftOldState;
+        private GamePadState rightOldState;
+        private GamePadState cameraZoomInOldState;
+        private GamePadState cameraZoomOutOldState;
+        private GamePadState cameraRotateClockWiseOldState;
+        private GamePadState cameraRotateCounterClockWiseOldState;
 
         public GamepadInput()
         {
@@ -58,112 +67,132 @@ namespace PrototypeGame2.INPUT
 
         public bool actionBtn()
         {
-            newState = GamePad.GetState(PlayerIndex.One);
-            if(newState.IsButtonDown(action) && newState.IsButtonUp(action))
+            GamePadState state = GamePad.GetState(PlayerIndex.One);
+            bool pressed = false;
+
+            if (state.IsButtonDown(action) && actionOldState.IsButtonUp(action))
             {
-                return true;
+                pressed = true;
             }
-            oldState = GamePad.GetState(PlayerIndex.One);
-            return false;
+            actionOldState = state;
+            return pressed;
         }
 
         public bool cancelBtn()
         {
-            newState = GamePad.GetState(PlayerIndex.One);
-            if (newState.IsButtonDown(cancel) && oldState.IsButtonUp(cancel))
+            GamePadState state = GamePad.GetState(PlayerIndex.One);
+            bool pressed = false;
+
+            if (state.IsButtonDown(cancel) && cancelOldState.IsButtonUp(cancel))
             {
-                return true;
+                pressed = true;
             }
-            oldState = GamePad.GetState(PlayerIndex.One);
-            return false;
+            cancelOldState = state;
+            return pressed;
         }
 
         public bool upBtn()
         {
-            newState = GamePad.GetState(PlayerIndex.One);
-            if (newState.IsButtonDown(up) && oldState.IsButtonUp(up))
+            GamePadState state = GamePad.GetState(PlayerIndex.One);
+            bool pressed = false;
+
+            if (state.IsButtonDown(up) && upOldState.IsButtonUp(up))
             {
-                return true;
+                pressed = true;
             }
-            oldState = GamePad.GetState(PlayerIndex.One);
-            return false;
+            upOldState = state;
+            return pressed;
         }
 
         public bool downBtn()
         {
-            newState = GamePad.GetState(PlayerIndex.One);
-            if (newState.IsButtonDown(down) && oldState.IsButtonUp(down))
+            GamePadState state = GamePad.GetState(PlayerIndex.One);
+            bool pressed = false;
+
+            if (state.IsButtonDown(action) && downOldState.IsButtonUp(down))
             {
-                return true;
+                pressed = true;
             }
-            oldState = GamePad.GetState(PlayerIndex.One);
-            return false;
+            downOldState = state;
+            return pressed;
         }
 
         public bool leftBtn()
         {
-            newState = GamePad.GetState(PlayerIndex.One);
-            if (newState.IsButtonDown(left) && oldState.IsButtonUp(left))
+            GamePadState state = GamePad.GetState(PlayerIndex.One);
+            bool pressed = false;
+
+            if (state.IsButtonDown(left) && downOldState.IsButtonUp(left))
             {
-                return true;
+                pressed = true;
             }
-            oldState = GamePad.GetState(PlayerIndex.One);
-            return false;
+            leftOldState = state;
+            return pressed;
         }
 
         public bool rightBtn()
         {
-            newState = GamePad.GetState(PlayerIndex.One);
-            if (newState.IsButtonDown(right) && oldState.IsButtonUp(right))
+            GamePadState state = GamePad.GetState(PlayerIndex.One);
+            bool pressed = false;
+
+            if (state.IsButtonDown(right) && downOldState.IsButtonUp(right))
             {
-                return true;
+                pressed = true;
             }
-            oldState = GamePad.GetState(PlayerIndex.One);
-            return false;
+            rightOldState = state;
+            return pressed;
         }
 
         public bool zoomInBtn()
         {
-            newState = GamePad.GetState(PlayerIndex.One);
-            if (newState.IsButtonDown(cameraZoomIn) && oldState.IsButtonUp(cameraZoomIn) && !isZoomed)
+            GamePadState state = GamePad.GetState(PlayerIndex.One);
+            bool pressed = false;
+
+            if (state.IsButtonDown(cameraZoomIn) && downOldState.IsButtonUp(cameraZoomIn))
             {
-                return true;
+                pressed = true;
             }
-            oldState = GamePad.GetState(PlayerIndex.One);
-            return false;
+            cameraZoomInOldState = state;
+            return pressed;
         }
 
         public bool zoomOutBtn()
         {
-            newState = GamePad.GetState(PlayerIndex.One);
-            if (newState.IsButtonDown(cameraZoomOut) && oldState.IsButtonUp(cameraZoomOut) && isZoomed)
+            GamePadState state = GamePad.GetState(PlayerIndex.One);
+            bool pressed = false;
+
+            if (state.IsButtonDown(cameraZoomOut) && downOldState.IsButtonUp(cameraZoomOut))
             {
-                return true;
+                pressed = true;
             }
-            oldState = GamePad.GetState(PlayerIndex.One);
-            return false;
+            cameraZoomOutOldState = state;
+            return pressed;
         }
 
         public bool rotateCameraCW_Btn()
         {
-            newState = GamePad.GetState(PlayerIndex.One);
-            if (newState.IsButtonDown(cameraRotateClockWise) && oldState.IsButtonUp(cameraRotateClockWise))
+            GamePadState state = GamePad.GetState(PlayerIndex.One);
+            bool pressed = false;
+
+            if (state.IsButtonDown(cameraRotateClockWise) && downOldState.IsButtonUp(cameraRotateClockWise))
             {
-                return true;
+                pressed = true;
             }
-            oldState = GamePad.GetState(PlayerIndex.One);
-            return false;
+            cameraRotateClockWiseOldState = state;
+            return pressed;
         }
 
         public bool rotateCameraCCW_Btn()
         {
-            newState = GamePad.GetState(PlayerIndex.One);
-            if (newState.IsButtonDown(cameraRotateCounterClockWise) && oldState.IsButtonUp(cameraRotateCounterClockWise))
+            GamePadState state = GamePad.GetState(PlayerIndex.One);
+            bool pressed = false;
+
+            if (state.IsButtonDown(cameraRotateCounterClockWise) && downOldState.IsButtonUp(cameraRotateCounterClockWise))
             {
-                return true;
+                pressed = true;
             }
-            oldState = GamePad.GetState(PlayerIndex.One);
-            return false;
+            cameraRotateCounterClockWiseOldState = state;
+            return pressed;
         }
 
         private string getAttributeValue(XmlDocument xmlDoc, string element, string attribute)

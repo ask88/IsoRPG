@@ -164,6 +164,8 @@ namespace PrototypeGame2.UI
 		}
 
 		//setters to set location of the canvas to draw the entire word.
+        public float getPosition_X() { return pos.X; }
+        public float getPosition_Y() { return pos.Y; }
 		public void setPosition_X(float x) { pos.X = x; }
 		public void setPosition_Y(float y) { pos.Y = y; }
 

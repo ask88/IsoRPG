@@ -4,11 +4,10 @@ using System.Xml;
 
 namespace PrototypeGame2.INPUT
 {
+
     public class KeyboardInput
     {
-        private KeyboardState newState;
-        private KeyboardState oldState;
-
+        
         public static Keys action;
         public static Keys cancel;
         public static Keys up;
@@ -22,9 +21,20 @@ namespace PrototypeGame2.INPUT
 
         public bool isZoomed = false;
 
+        private KeyboardState actionOldState;
+        private KeyboardState cancelOldState;
+        private KeyboardState upOldState;
+        private KeyboardState downOldState;
+        private KeyboardState leftOldState;
+        private KeyboardState rightOldState;
+        private KeyboardState cameraZoomInOldState;
+        private KeyboardState cameraZoomOutOldState;
+        private KeyboardState cameraRotateClockWiseOldState;
+        private KeyboardState cameraRotateCounterClockWiseOldState;
+
         public KeyboardInput()
         {
-            action = Keys.Space;
+            action = Keys.Enter;
             cancel = Keys.Back;
             up = Keys.W;
             down = Keys.S;
@@ -56,114 +66,127 @@ namespace PrototypeGame2.INPUT
         public bool actionBtn()
         {
             KeyboardState state = Keyboard.GetState();
+            bool pressed = false;
 
-            if (state.IsKeyDown(action) && oldState.IsKeyUp(action))
+            if (state.IsKeyDown(action) && actionOldState.IsKeyUp(action))
             {
-                return true;
+                pressed = true;
             }
-
-            return false;
+            actionOldState = state;
+            return pressed;
         }
 
         public bool cancelBtn()
         {
-            newState = Keyboard.GetState();
-            if(newState.IsKeyDown(cancel) && oldState.IsKeyUp(cancel))
+            KeyboardState state = Keyboard.GetState();
+            bool pressed = false;
+
+            if(state.IsKeyDown(cancel) && cancelOldState.IsKeyUp(cancel))
             {
-                return true;
+                pressed = true;
             }
-            oldState = Keyboard.GetState();
-            return false;
+            cancelOldState = state;
+            return pressed;
         }
 
         public bool upBtn()
         {
-            newState = Keyboard.GetState();
-            if(newState.IsKeyDown(up) && oldState.IsKeyUp(up))
+            KeyboardState state = Keyboard.GetState();
+            bool pressed = false;
+
+            if(state.IsKeyDown(up) && upOldState.IsKeyUp(up))
             {
-                return true;
+                pressed = true;
             }
-            oldState = Keyboard.GetState();
-            return false;
+
+            upOldState = state;
+            return pressed;
         }
 
         public bool downBtn()
         {
-            KeyboardState newState = Keyboard.GetState();
+            KeyboardState state = Keyboard.GetState();
+            bool pressed = false;
 
-            if (newState.IsKeyDown(down) && oldState.IsKeyUp(down))
-            {
-                return true;
+            if (state.IsKeyDown(down) && downOldState.IsKeyUp(down))
+            { 
+                pressed = true;
             }
 
-            oldState = Keyboard.GetState();
-            return false;
+            downOldState = state;
+            return pressed;
         }
 
         public bool leftBtn()
         {
-            newState = Keyboard.GetState();
-            if (newState.IsKeyDown(left) && oldState.IsKeyUp(left))
+            KeyboardState state = Keyboard.GetState();
+            bool pressed = false;
+            if (state.IsKeyDown(left) && leftOldState.IsKeyUp(left))
             {
-                return true;
+                pressed = true;
             }
-            oldState = Keyboard.GetState();
-            return false;
+            leftOldState = state;
+            return pressed;
         }
 
         public bool rightBtn()
         {
-            newState = Keyboard.GetState();
-            if (newState.IsKeyDown(right) && oldState.IsKeyUp(right))
+            KeyboardState state = Keyboard.GetState();
+            bool pressed = false;
+            if (state.IsKeyDown(right) && rightOldState.IsKeyUp(right))
             {
-                return true;
+                pressed = true;
             }
-            oldState = Keyboard.GetState();
-            return false;
+            rightOldState = state;
+            return pressed;
         }
 
         public bool zoomInBtn()
         {
-            newState = Keyboard.GetState();
-            if(newState.IsKeyDown(cameraZoomIn) && oldState.IsKeyUp(cameraZoomIn) && !isZoomed)
+            KeyboardState state = Keyboard.GetState();
+            bool pressed = false;
+            if(state.IsKeyDown(cameraZoomIn) && cameraZoomInOldState.IsKeyUp(cameraZoomIn) && !isZoomed)
             {
-                return true;
+                pressed = true;
             }
-            oldState = Keyboard.GetState();
-            return false;
+            cameraZoomInOldState = state;
+            return pressed;
         }
 
         public bool zoomOutBtn()
         {
-            newState = Keyboard.GetState();
-            if(newState.IsKeyDown(cameraZoomOut) && oldState.IsKeyUp(cameraZoomOut) && isZoomed)
+            KeyboardState state = Keyboard.GetState();
+            bool pressed = false;
+            if(state.IsKeyDown(cameraZoomOut) && cameraZoomOutOldState.IsKeyUp(cameraZoomOut) && isZoomed)
             {
-                return true;
+                pressed = true;
             }
-            oldState = Keyboard.GetState();
-            return false;
+            cameraZoomOutOldState = state;
+            return pressed;
         }
 
         public bool rotateCameraCW_Btn()
         {
-            newState = Keyboard.GetState();
-            if(newState.IsKeyDown(cameraRotateClockWise) && oldState.IsKeyUp(cameraRotateClockWise))
+            KeyboardState state = Keyboard.GetState();
+            bool pressed = false;
+            if(state.IsKeyDown(cameraRotateClockWise) && cameraRotateClockWiseOldState.IsKeyUp(cameraRotateClockWise))
             {
-                return true;
+                pressed = true;
             }
-            oldState = Keyboard.GetState();
-            return false;
+            cameraRotateClockWiseOldState = state;
+            return pressed;
         }
 
         public bool rotateCameraCCW_Btn()
         {
-            newState = Keyboard.GetState();
-            if(newState.IsKeyDown(cameraRotateCounterClockWise) && oldState.IsKeyUp(cameraRotateCounterClockWise))
+            KeyboardState state = Keyboard.GetState();
+            bool pressed = false;
+            if(state.IsKeyDown(cameraRotateCounterClockWise) && cameraRotateCounterClockWiseOldState.IsKeyUp(cameraRotateCounterClockWise))
             {
-                return true;
+                pressed = true;
             }
-            oldState = Keyboard.GetState();
-            return false;
+            cameraRotateCounterClockWiseOldState = state;
+            return pressed;
         }
 
         private string getAttributeValue(XmlDocument xmlDoc, string element, string attribute)
