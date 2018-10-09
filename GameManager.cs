@@ -41,9 +41,9 @@ namespace PrototypeGame2
             mainMenu.Load();
         }
 
-        public void Update(float dt)
+        public void Update(float dt, int fps)
         {
-
+            System.Console.WriteLine(fps);
             switch(state)
             {
                 case GameState.main_menu:

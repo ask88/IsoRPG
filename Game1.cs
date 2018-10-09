@@ -88,7 +88,7 @@ namespace PrototypeGame2
                 render = true;
 
                 //TODO: UPDATE GAME
-                gm.Update(UPDATE_CAP);
+                gm.Update(UPDATE_CAP, fps);
 
                 base.Update(gt);
 
@@ -98,7 +98,7 @@ namespace PrototypeGame2
                     fps = frames;
                     frames = 0;
                 }
-                //System.Console.WriteLine(fps);
+
                 frames++;
             }
 
