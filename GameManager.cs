@@ -1,10 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using PrototypeGame2.ENUMS;
-using PrototypeGame2.GFX;
 using PrototypeGame2.INPUT;
 using PrototypeGame2.UI;
-using System.Collections.Generic;
 
 namespace PrototypeGame2
 {
@@ -19,7 +16,7 @@ namespace PrototypeGame2
         public int screenWidth, screenHeight;
 
         private GameState state;
-        private Text text;
+
         private KeyboardInput keyboardInput;
         private GamepadInput gamepadInput;
 
