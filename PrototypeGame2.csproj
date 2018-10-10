@@ -47,6 +47,7 @@
     <Compile Include="GameManager.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjects\Player.cs" />
+    <Compile Include="GFX\Animation.cs" />
     <Compile Include="GFX\AnimationManager.cs" />
     <Compile Include="GFX\SpriteSheet.cs" />
     <Compile Include="INPUT\GamepadInput.cs" />

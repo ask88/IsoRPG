@@ -5,7 +5,7 @@ using PrototypeGame2.UI;
 
 namespace PrototypeGame2
 {
-    public enum GameState { main_menu, new_game, load_menu };
+    public enum GameState { main_menu, new_game, load_menu, options_menu};
 
     public class GameManager
     {
@@ -41,13 +41,12 @@ namespace PrototypeGame2
             mainMenu.Load();
         }
 
-        public void Update(float dt, int fps)
+        public void Update(GameTime gt)
         {
-            System.Console.WriteLine(fps);
             switch(state)
             {
                 case GameState.main_menu:
-                    mainMenu.Update(dt);
+                    mainMenu.Update(gt);
                     break;
                 case GameState.load_menu:
                     break;
@@ -56,16 +55,12 @@ namespace PrototypeGame2
             }
         }
 
-        public void Draw(SpriteBatch sp, float dt)
+        public void Draw(SpriteBatch sp)
         {
             switch(state)
             {
                 case GameState.main_menu:
-                    //sp.Draw(drawHorizontalLine(40), new Vector2(0, game.HEIGHT / 2), null, Color.Black, 0f, Vector2.Zero, SCALE, SpriteEffects.None, 0f);
-                    //sp.Draw(drawVerticalLine(40), new Vector2(40, game.HEIGHT / 2), null, Color.Black, 0f, Vector2.Zero, SCALE, SpriteEffects.None, 0f);
-                    //sp.Draw(drawVerticalLine(40), new Vector2(0, game.HEIGHT / 2), null, Color.Black, 0f, Vector2.Zero, SCALE, SpriteEffects.None, 0f);
-                    //sp.Draw(drawHorizontalLine(40), new Vector2(0, (game.HEIGHT / 2) + 40), null, Color.Black, 0f, Vector2.Zero, SCALE, SpriteEffects.None, 0f);
-                    mainMenu.Draw(sp, dt);
+                    mainMenu.Draw(sp);
                     break;
                 case GameState.load_menu:
                     

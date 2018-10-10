@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PrototypeGame2.GFX;
 using PrototypeGame2.INPUT;
 
 namespace PrototypeGame2.UI
@@ -17,8 +18,6 @@ namespace PrototypeGame2.UI
         private GamepadInput gamepadInput;
 
         private Text text;
-
-        private bool trigger = false;
 
     public MainMenu(GameManager game, KeyboardInput keyboardInput, GamepadInput gamepadInput)
         {
@@ -39,7 +38,7 @@ namespace PrototypeGame2.UI
             textY = text.getPosition_Y();
         }
 
-        public void Update(float UC)
+        public void Update(GameTime gt)
         {
             //need to edit keyboard input class because the oldstate is being set and preventing other keys from being pressed.
             //the method executes to try and evaluate the condition and sets the oldstate which will equate false for other keys
@@ -73,7 +72,7 @@ namespace PrototypeGame2.UI
             }
         }
 
-        public void Draw(SpriteBatch sp, float UC)
+        public void Draw(SpriteBatch sp)
         {
             text.Draw(sp);
 

@@ -72,8 +72,7 @@ namespace PrototypeGame2
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            gt = gameTime;
-            firstTime = (float)gt.TotalGameTime.TotalSeconds;
+            firstTime = (float)gameTime.TotalGameTime.TotalSeconds;
             passedTime = firstTime - lastTime;
             lastTime = firstTime;
 
@@ -82,15 +81,15 @@ namespace PrototypeGame2
 
             render = false;
 
-            while(unprocessedTime >= UPDATE_CAP)
+            while (unprocessedTime >= UPDATE_CAP)
             {
                 unprocessedTime -= UPDATE_CAP;
                 render = true;
 
                 //TODO: UPDATE GAME
-                gm.Update(UPDATE_CAP, fps);
+                gm.Update(gameTime);
 
-                base.Update(gt);
+                base.Update(gameTime);
 
                 if(frameTime >= 1.0)
                 {
@@ -98,7 +97,6 @@ namespace PrototypeGame2
                     fps = frames;
                     frames = 0;
                 }
-
                 frames++;
             }
 
@@ -114,7 +112,6 @@ namespace PrototypeGame2
 
         protected override void Draw(GameTime gameTime)
         {
-            gt = gameTime;
             if (process.Equals(eProcess.DRAW))
             {
 
@@ -122,10 +119,10 @@ namespace PrototypeGame2
 
                 //TODO DRAW
                 //spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, null, null, null);
-                gm.Draw(spriteBatch, UPDATE_CAP);
+                gm.Draw(spriteBatch);
                 //spriteBatch.End();
 
-                base.Draw(gt);
+                base.Draw(gameTime);
             }
         }
 
